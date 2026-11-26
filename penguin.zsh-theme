@@ -34,7 +34,7 @@ hash_color() {
 
 
 local time='[%D{%f/%m/%y} %D{%L:%M:%S}]'
-local user='$(hash_color "$USER")%}%n%{$reset_color%}'
+local user='%{$(hash_color "$USER")%}%n%{$reset_color%}'
 local host='$m'
 
 print_line() {
