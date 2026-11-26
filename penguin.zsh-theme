@@ -33,10 +33,6 @@ hash_color() {
 }
 
 
-local time='[%D{%f/%m/%y} %D{%L:%M:%S}]'
-local user='%{$(hash_color "$USER")%}%n%{$reset_color%}'
-local host='$m'
-
 print_line() {
   dash='\e[38;5;241m-'
   for i in {1..$((COLUMNS))}
@@ -45,6 +41,10 @@ print_line() {
   done
 }
 
-PROMPT=$'$(print_line)
-\U1F427 %{$(hash_color "$USER")%}%n%{$reset_color%}@%m ${time}
-\U2BA1 '
+
+PROMPT = $'$(print_line)\n' # dashed Line
+PROMPT += $'\U1F427 ' # penguin
+PROMPT += $'%{$(hash_color "$USER")%}%n%{$reset_color%}' # user
+PROMPT += $'@%{$(hash_color "$HOST")%}%m%{$reset_color%} ' # @host
+PROMPT += $'[%D{%f/%m/%y} %D{%L:%M:%S}]' # time
+PROMPT +=$'\n\U2BA1 ' # new line
