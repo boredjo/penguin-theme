@@ -1,3 +1,5 @@
+local gray_color=241
+
 hash_color() {
     [[ -z "$1" ]] && return 1
 
@@ -34,7 +36,7 @@ hash_color() {
 
 
 print_line() {
-  dash='\e[38;5;241m-'
+  dash='\e[38;5;${gray_color}m-'
   for i in {1..$((COLUMNS))}
   do
     echo -ne $dash
@@ -46,5 +48,5 @@ PROMPT=$'$(print_line)\n' # dashed Line
 PROMPT+=$'\U1F427 ' # penguin
 PROMPT+=$'%{$(hash_color "$USER")%}%n%{$reset_color%}' # user
 PROMPT+=$'@%{$(hash_color "$HOST")%}%m%{$reset_color%} ' # @host
-PROMPT+=$'[%D{%f/%m/%y} %D{%L:%M:%S}]' # time
-PROMPT+=$'\n\U2BA1 ' # new line
+RPROMPT=$'\e[38;5;${gray_color}m[%D{%f/%m/%y} %D{%L:%M:%S}]' # time
+PROMPT+=$'\n\U2BA1%{$reset_color%} ' # new line
