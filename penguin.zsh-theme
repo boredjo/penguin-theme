@@ -1,3 +1,3 @@
 PROMPT=$'
-🐧
-\U2BA1'
+\U1F427 %n@%h
+\U2BA1 '
