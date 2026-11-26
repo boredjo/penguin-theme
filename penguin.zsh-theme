@@ -46,5 +46,5 @@ print_line() {
 }
 
 PROMPT=$'$(print_line)
-\U1F427 %n@%m ${time}
+\U1F427 ${user}@%m ${time}
 \U2BA1 '
