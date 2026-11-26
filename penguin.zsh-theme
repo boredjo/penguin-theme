@@ -42,9 +42,9 @@ print_line() {
 }
 
 
-PROMPT = $'$(print_line)\n' # dashed Line
-PROMPT += $'\U1F427 ' # penguin
-PROMPT += $'%{$(hash_color "$USER")%}%n%{$reset_color%}' # user
-PROMPT += $'@%{$(hash_color "$HOST")%}%m%{$reset_color%} ' # @host
-PROMPT += $'[%D{%f/%m/%y} %D{%L:%M:%S}]' # time
-PROMPT +=$'\n\U2BA1 ' # new line
+PROMPT=$'$(print_line)\n' # dashed Line
+PROMPT+=$'\U1F427 ' # penguin
+PROMPT+=$'%{$(hash_color "$USER")%}%n%{$reset_color%}' # user
+PROMPT+=$'@%{$(hash_color "$HOST")%}%m%{$reset_color%} ' # @host
+PROMPT+=$'[%D{%f/%m/%y} %D{%L:%M:%S}]' # time
+PROMPT+=$'\n\U2BA1 ' # new line
