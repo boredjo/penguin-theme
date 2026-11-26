@@ -10,6 +10,6 @@ print_line() {
   done
 }
 
-PROMPT=$'${print_line}
+PROMPT=$'$(print_line)
 \U1F427 %n@%m ${time}
 \U2BA1 '
