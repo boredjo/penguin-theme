@@ -40,7 +40,7 @@ function precmd() {
     echo -ne $dash
   done
 
-  echo '\n'
+  echo ''
 }
 
 
