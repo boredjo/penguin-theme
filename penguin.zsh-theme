@@ -33,7 +33,7 @@ hash_color() {
 }
 
 
-print_line() {
+function precmd() {
   dash='\e[38;5;241m-'
   for i in {1..$((COLUMNS))}
   do
@@ -42,8 +42,7 @@ print_line() {
 }
 
 
-PROMPT='-' * 12 # dashed Line
-PROMPT+=$'\U1F427 ' # penguin
+PROMPT=$'\U1F427 ' # penguin
 PROMPT+=$'%{$(hash_color "$USER")%}%n%{$reset_color%}' # user
 PROMPT+=$'@%{$(hash_color "$HOST")%}%m%{$reset_color%} ' # @host
 PROMPT+=$'\e[38;5;241m[%D{%f/%m/%y} %D{%L:%M:%S}]' # time
