@@ -40,14 +40,15 @@ function precmd() {
     echo -ne $dash
   done
 
-  echo ''
+  echo '' # new line
 }
 
 
 PROMPT=$'\U1F427 ' # penguin
 PROMPT+=$'%{$(hash_color "$USER")%}%n%{$reset_color%}' # user
-PROMPT+=$'@%{$(hash_color "$HOST")%}%m%{$reset_color%} ' # @host
-PROMPT+=$'\e[38;5;241m[%D{%f/%m/%y} %D{%L:%M:%S}]' # time
+PROMPT+=$'@%{$(hash_color "$HOST")%}%m%{$reset_color%}:' # @host
+PROMPT+=$'\e[38;5;241~% ' # pwd
+PROMPT+=$'\e[38;5;241m[%D{%L:%M:%S}]' # time
 PROMPT+=$'\n\U2BA1%{$reset_color%} ' # new line
 
 
