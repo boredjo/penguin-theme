@@ -42,7 +42,7 @@ print_line() {
 }
 
 
-PROMPT='$(print_line)\n' # dashed Line
+PROMPT='$(print_line)' # dashed Line
 PROMPT+=$'\U1F427 ' # penguin
 PROMPT+=$'%{$(hash_color "$USER")%}%n%{$reset_color%}' # user
 PROMPT+=$'@%{$(hash_color "$HOST")%}%m%{$reset_color%} ' # @host
