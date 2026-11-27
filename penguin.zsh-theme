@@ -36,7 +36,7 @@ hash_color() {
 
 
 print_line() {
-  dash='\e[38;5;${gray_color}m-'
+  dash=$'\e[38;5;${gray_color}m-'
   for i in {1..$((COLUMNS))}
   do
     echo -ne $dash
