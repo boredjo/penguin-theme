@@ -39,6 +39,8 @@ function precmd() {
   do
     echo -ne $dash
   done
+
+  echo '\n'
 }
 
 
