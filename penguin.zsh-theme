@@ -41,10 +41,8 @@ function precmd() {
   done
 
   echo '' # new line
-  vcs_info
 
-    # Get APM info.
-
+  # Get APM info.
   if [[ -x "$(whence -p ibam)" ]]; then
       PR_APM_RESULT=$(ibam --percentbattery)
   elif [[ -x "$(whence -p apm)" ]]; then
