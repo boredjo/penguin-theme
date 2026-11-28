@@ -41,15 +41,47 @@ function precmd() {
   done
 
   echo '' # new line
+  vcs_info
+
+    # Get APM info.
+
+  if [[ -x "$(whence -p ibam)" ]]; then
+      PR_APM_RESULT=$(ibam --percentbattery)
+  elif [[ -x "$(whence -p apm)" ]]; then
+      PR_APM_RESULT=$(apm)
+  fi
+
+  ### https://aperiodic.net/pip/prompt/prompt.txt
+  # Show virtual environment
+
+  PR_VENV=""
+  if [[ -n "$POETRY_ACTIVE" ]]; then
+      # I'm not sure how to tell _which_ Poetry venv is running, so that
+      # information gets left out.  Sigh.
+      PR_VENV="${PR_VENV}${PR_BLUE}[${PR_GREEN}poetry${PR_BLUE}]${PR_SHIFT_IN}${PR_HBAR}${PR_SHIFT_OUT}"
+  fi
+  if [[ -n "$CONDA_DEFAULT_ENV" ]]; then
+      PR_VENV="${PR_VENV}${PR_BLUE}[${PR_GREEN}conda${PR_BLUE}:${PR_GREEN}${CONDA_DEFAULT_ENV}${PR_BLUE}]${PR_SHIFT_IN}${PR_HBAR}${PR_SHIFT_OUT}"
+  fi
+  if [[ -n "$VIRTUAL_ENV" ]]; then
+      PR_VENV="${PR_VENV}${PR_BLUE}[${PR_GREEN}venv${PR_BLUE}:${PR_GREEN}${VIRTUAL_ENV/#${HOME}/~}${PR_BLUE}]${PR_SHIFT_IN}${PR_HBAR}${PR_SHIFT_OUT}"
+  fi
 }
 
 
 PROMPT=$'\U1F427 ' # penguin
+PROMPT+=$'\e[38;5;241m[%D{%L:%M:%S}] ' # time
 PROMPT+=$'%{$(hash_color "$USER")%}%n%{$reset_color%}' # user
 PROMPT+=$'@%{$(hash_color "$HOST")%}%m%{$reset_color%} ' # @host
 PROMPT+=$'\e[38;5;241~%~ ' # pwd
-PROMPT+=$'\e[38;5;241m[%D{%L:%M:%S}]' # time
-PROMPT+=$'\n\U2BA1%{$reset_color%} ' # new line
+PROMPT+=$'\n\U2BA1%{$reset_color%}' # new line
+
+if [[ -n "$PR_VENV" ]]; then
+  PROMPT+=$'($PR_VENV) '
+else
+  PROMPT+=' '
+fi
+
 
 
 # keep time fresh
